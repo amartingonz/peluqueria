@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('citas', function (Blueprint $table) {
             $table->id();   //  Clave primaria citas
             $table->unsignedBigInteger('usuario_id');
-            $table->foreign('usuario_id')->references('id')->on('clientes');
+            $table->foreign('usuario_id')->references('id')->on('clientes')->onUpdate('cascade');
             $table->string('hora',255);
             $table->date('fecha',255);
             $table->string('anotacion',255);

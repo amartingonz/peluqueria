@@ -41,6 +41,12 @@ class CitaController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function store(Request $request)
     {
         request()->validate(Cita::$rules);
@@ -106,4 +112,6 @@ class CitaController extends Controller
         return redirect()->route('citas.index')
             ->with('success', 'Cita deleted successfully');
     }
+
+
 }

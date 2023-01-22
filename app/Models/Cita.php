@@ -49,5 +49,6 @@ class Cita extends Model
         return $this->hasOne('App\Models\Cliente', 'id', 'usuario_id');
     }
     
+  
 
 }

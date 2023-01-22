@@ -3,7 +3,9 @@
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +19,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/clientes', function () {
+    return view('clientes');
+});
+
+Route::get('/citas', function () {
+    return view('citas');
+});
+
+
+Route::get('/home', function () {
+    return view('home');
+})->middleware(['auth', 'verified'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,7 +43,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('clientes',ClienteController::class);
-Route::resource('citas',ClienteController::class);
+Route::resource('citas',CitaController::class);
 
 require __DIR__.'/auth.php';
 

@@ -2,7 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
 
 /**
  * Class Cliente
@@ -23,10 +27,10 @@ class Cliente extends Model
 {
     
     static $rules = [
-		'nombre' => 'required',
-		'apellidos' => 'required',
-		'telefono' => 'required',
-		'email' => 'required',
+		'nombre' => 'required | max:20 | alpha',
+		'apellidos' => 'required | max:30 | alpha',
+		'telefono' => 'required|min:10|numeric',
+		'email' => 'required | email:rfc,dns |unique:clientes,email',
     ];
 
     protected $perPage = 20;
@@ -47,5 +51,9 @@ class Cliente extends Model
         return $this->hasMany('App\Models\Cita', 'usuario_id', 'id');
     }
     
-
+    public static function getAll(){
+      $clientes = DB::select('SELECT id,nombre FROM clientes');
+      return $clientes;
+  }
+  
 }

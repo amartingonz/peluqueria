@@ -16,6 +16,12 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $clientes = Cliente::paginate();
@@ -105,5 +111,10 @@ class ClienteController extends Controller
 
         return redirect()->route('clientes.index')
             ->with('success', 'Cliente deleted successfully');
+    }
+
+    public static function getAllClientes(){
+        $clientes = new Cliente();
+        return $clientes -> getAll();
     }
 }

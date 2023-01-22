@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clientes;
+use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
+
 
 class HomeController extends Controller
 {
@@ -25,4 +29,13 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public static function getall(){
+        $usuarios = new User();
+        return $usuarios -> getAll();
+    }
+
+   
+
+
 }
