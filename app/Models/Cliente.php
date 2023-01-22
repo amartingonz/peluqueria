@@ -28,7 +28,7 @@ class Cliente extends Model
     
     static $rules = [
 		'nombre' => 'required | max:20 | alpha',
-		'apellidos' => 'required | max:30 | alpha',
+		'apellidos' => 'required | max:30 | regex:/^[\pL\s\-]+$/u',
 		'telefono' => 'required|min:10|numeric',
 		'email' => 'required | email:rfc,dns |unique:clientes,email',
     ];
