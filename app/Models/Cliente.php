@@ -30,7 +30,7 @@ class Cliente extends Model
 		'nombre' => 'required | max:20 | alpha',
 		'apellidos' => 'required | max:30 | regex:/^[\pL\s\-]+$/u',
 		'telefono' => 'required|min:10|numeric',
-		'email' => 'required | email:rfc,dns |unique:clientes,email',
+		'email' => 'required | email:rfc,dns',
     ];
 
     protected $perPage = 20;
